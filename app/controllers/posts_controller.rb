@@ -5,11 +5,17 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    redirect_to new_post_path(@post)
   end
 
   def new
     @post = Post.new
   end
 
-  # add create method here
+  def create 
+    @post = Post.new
+    @post.title = params[:title]
+    @post.description = params[:description]
+    @post.save
+  end
 end
